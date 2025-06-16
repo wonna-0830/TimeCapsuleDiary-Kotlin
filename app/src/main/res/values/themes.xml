@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<!-- themes.xml -->
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <style name="Theme.TimeCapsule" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">#4A6658</item>
+        <item name="colorPrimaryVariant">#3B4F45</item>
+        <item name="colorSecondary">#D4B1B1</item>
+    </style>
 
-    <style name="Theme.TimeCapsule" parent="android:Theme.Material.Light.NoActionBar" />
 </resources>
