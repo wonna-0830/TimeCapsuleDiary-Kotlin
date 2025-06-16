@@ -1,11 +1,15 @@
 package com.example.timecapsule
 
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
 import android.widget.Button
+import android.widget.FrameLayout
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 
 class MainDiary : AppCompatActivity() {
 
@@ -16,6 +20,31 @@ class MainDiary : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_maindiary)
+
+        val container = findViewById<FrameLayout>(R.id.containerView)
+
+// 먼저 기존 뷰 지우고
+        container.removeAllViews()
+
+// RecyclerView 레이아웃 inflate 해서 추가
+        val inflater = LayoutInflater.from(this)
+        val recyclerView = inflater.inflate(R.layout.recycler_polaroid, container, false) as RecyclerView
+
+// LayoutManager 설정 (크기 다양하게 할 거면 Staggered 추천)
+        recyclerView.layoutManager = StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.VERTICAL)
+
+// 데이터 연결
+        val dummyList = listOf(
+            DiaryEntry("sample1.jpg", "😊", "기분 최고!", "2025-06-01", 0.0, 0.0),
+            DiaryEntry("sample2.jpg", "😌", "혼자 걷는 산책길", "2025-06-03", 0.0, 0.0)
+        )
+        val adapter = PolaroidAdapter(dummyList)
+        recyclerView.adapter = adapter
+
+// containerView 안에 RecyclerView 넣기
+        container.addView(recyclerView)
+
+
 
         fabMenuLayout = findViewById(R.id.fabMenuLayout)
         fabMain = findViewById(R.id.fab_custom)
