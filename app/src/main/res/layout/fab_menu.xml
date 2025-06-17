@@ -34,7 +34,7 @@
             android:layout_marginVertical="2dp"/>
 
         <Button
-            android:id="@+id/btnChangeTheme"
+            android:id="@+id/monthEmotion"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:text="감정 통계 보기"
@@ -50,7 +50,7 @@
             android:layout_marginVertical="2dp"/>
 
         <Button
-            android:id="@+id/btnLogout"
+            android:id="@+id/btnChangeTheme"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:text="테마 변경"
