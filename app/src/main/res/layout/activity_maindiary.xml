@@ -25,45 +25,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/dateText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="June"
-        android:textColor="#4A6658"
-        android:textSize="25sp"
-        android:layout_marginTop="12dp"
-        app:layout_constraintTop_toBottomOf="@id/titleText"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-    <!-- 이전 달 버튼 -->
-    <TextView
-        android:id="@+id/prevMonth"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="◀"
-        android:textSize="20sp"
-        android:textColor="#4A6658"
-        android:paddingEnd="16dp"
-        app:layout_constraintTop_toTopOf="@id/dateText"
-        app:layout_constraintBottom_toBottomOf="@id/dateText"
-        app:layout_constraintEnd_toStartOf="@id/dateText"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <!-- 다음 달 버튼 -->
-    <TextView
-        android:id="@+id/nextMonth"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="▶"
-        android:textSize="20sp"
-        android:textColor="#4A6658"
-        android:paddingStart="16dp"
-        app:layout_constraintTop_toTopOf="@id/dateText"
-        app:layout_constraintBottom_toBottomOf="@id/dateText"
-        app:layout_constraintStart_toEndOf="@id/dateText"
-        app:layout_constraintEnd_toEndOf="parent" />
 
     <!-- 동적으로 교체될 콘텐츠 영역 -->
     <FrameLayout
@@ -71,7 +32,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="12dp"
-        app:layout_constraintTop_toBottomOf="@id/dateText"
+        app:layout_constraintTop_toBottomOf="@id/titleText"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
