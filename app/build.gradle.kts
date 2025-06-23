@@ -47,6 +47,7 @@ dependencies {
     implementation("com.google.android.material:material:1.11.0")
     implementation("com.github.bumptech.glide:glide:4.16.0")
     implementation(libs.firebase.firestore.ktx)
+    implementation(libs.firebase.auth.ktx)
     kapt("com.github.bumptech.glide:compiler:4.16.0")
     implementation(platform("com.google.firebase:firebase-bom:32.7.3"))
     implementation("com.google.firebase:firebase-firestore-ktx:24.11.1")
