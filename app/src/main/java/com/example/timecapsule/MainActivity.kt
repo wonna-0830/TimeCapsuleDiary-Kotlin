@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -26,19 +27,39 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        Log.d("CheckFlow", "MainActivity onCreate 시작됨")
+
         // 스플래시 전용 레이아웃 사용 (나중에 배경화면 등 넣기)
         setContentView(R.layout.activity_main)
 
         // 🔐 고유 ID 생성 및 저장
+        Log.d("CheckFlow", "1. onCreate 시작")
         val userId = getUserId(this)
+        Log.d("CheckFlow", "2. userId 생성됨: $userId")
 
-        // ☁️ Firebase에 user 문서 생성 여부 확인
         val userRef = Firebase.firestore.collection("user").document(userId)
-        userRef.get().addOnSuccessListener { document ->
-            if (!document.exists()) {
-                userRef.set(mapOf("createdAt" to FieldValue.serverTimestamp()))
+        Log.d("CheckFlow", "3. Firestore 문서 참조 생성됨")
+
+        userRef.get()
+            .addOnSuccessListener { document ->
+                Log.d("CheckFlow", "4. 문서 조회 성공")
+                if (!document.exists()) {
+                    Log.d("CheckFlow", "5. 문서 없음 → 생성 시도")
+                    userRef.set(mapOf("createdAt" to FieldValue.serverTimestamp()))
+                        .addOnSuccessListener {
+                            Log.d("Firestore", "✅ 유저 문서 생성 성공")
+                        }
+                        .addOnFailureListener { e ->
+                            Log.e("Firestore", "❌ 유저 문서 생성 실패", e)
+                        }
+                } else {
+                    Log.d("CheckFlow", "5. 문서 이미 존재함")
+                }
             }
-        }
+            .addOnFailureListener { e ->
+                Log.e("Firestore", "❌ 문서 조회 실패", e)
+            }
+
 
         // ⏱ 5초 후 메인 다이어리 화면으로 전환
         Handler(Looper.getMainLooper()).postDelayed({
